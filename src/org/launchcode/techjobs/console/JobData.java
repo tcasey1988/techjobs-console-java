@@ -72,11 +72,14 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
+        String lowerValue = value.toLowerCase();
+
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            String lowerAValue = aValue.toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (lowerAValue.contains(lowerValue)) {
                 jobs.add(row);
             }
         }
@@ -125,4 +128,23 @@ public class JobData {
         }
     }
 
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        String lowerValue = value.toLowerCase();
+
+        for (HashMap<String, String> row : allJobs){
+
+            String rowString = row.toString();
+            String lowerString = rowString.toLowerCase();
+
+            if (lowerString.contains(lowerValue)) {
+                jobs.add(row);
+            }
+        }
+        return jobs;
+    }
 }
